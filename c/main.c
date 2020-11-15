@@ -24,7 +24,9 @@ int main(int argc, char *argv[]){
 
 	parsed_json = json_tokener_parse(buffer);
 
-	json_object_object_get_ex(parsed_json, "iinfo", &jinfo);
+	if(json_object_object_get_ex(parsed_json, "info", &jinfo)){
+		printf("tengoinfo");
+	}
 	json_object_object_get_ex(parsed_json, "data", &jdata);
 
 	json_object_object_get_ex(jinfo, "width", &jwidth);
