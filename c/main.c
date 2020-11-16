@@ -2,12 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <json-c/json.h>
-
-
-struct Aguja{
-	int x;
-	int y;
-};
+#include "funciones.h"
 
 
 int main(int argc, char *argv[]){
@@ -60,7 +55,7 @@ int main(int argc, char *argv[]){
 
 
 	//Crear agujas
-	struct Aguja agujas[n];
+	struct Point agujas[n];
 	int r = width/2;
 	double alpha;
 	for(i=0; i<n; i++){
@@ -71,14 +66,20 @@ int main(int argc, char *argv[]){
 
 
 	//Bucle principal
-	int currAguja = 0;
+	int currAguja = 50;
 	int hilos[nHilos+1];
-	int maxIntesidad;
+	int maxIntensidad, x0, y0, x1, y1, len;
+	struct Point linea[2000];
 	hilos[0] = 0;
 	for(i=0; i<nHilos; i++){
 		maxIntensidad = 0;
 		for(j=0; j<n; j++){
-			
+			x0 = agujas[currAguja].x, y0 = agujas[currAguja].y;
+			x1 = agujas[j].x, y1 = agujas[j].y;
+			len = max(abs(x0-x1),abs(y0-y1));
+			bresenham(x0, y0, x1, y1, linea, len);
+
+			exit(0);
 		}
 	}
 
