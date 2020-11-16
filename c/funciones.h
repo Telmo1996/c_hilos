@@ -8,3 +8,4 @@ struct Point{
 
 int max(int, int);
 void bresenham(int, int, int, int, struct Point[], int);
+double intensidad(struct Point[], int, int[][1000]);

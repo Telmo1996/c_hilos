@@ -16,7 +16,7 @@ void bresenham(int x0, int y0, int x1, int y1, struct Point linea[], int len){
 
 	for (;;){  /* loop */
 		//setPixel (x0,y0);
-		printf("%d, %d | ", x0, y0);
+		//printf("%d, %d | ", x0, y0);
 		linea[i].x = x0; linea[i].y = y0;
 		if (x0 == x1 && y0 == y1) break;
 		e2 = 2 * err;
@@ -26,4 +26,16 @@ void bresenham(int x0, int y0, int x1, int y1, struct Point linea[], int len){
 		i++;
 	}
 	if(len != i) printf("len != i");
+}
+
+double intensidad(struct Point linea[], int len, int data[][1000]){
+	double inten = 0.0;
+	int i;
+	printf("%d\n", len);
+	for(i=0; i<len; i++){
+		printf("%d,%d ", linea[i].x -1, linea[i].y -1);
+		inten += 255.0 - data[linea[i].x -1][linea[i].y -1];
+	}
+	return inten / len;
+
 }

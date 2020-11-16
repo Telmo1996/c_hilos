@@ -69,6 +69,7 @@ int main(int argc, char *argv[]){
 	int currAguja = 50;
 	int hilos[nHilos+1];
 	int maxIntensidad, x0, y0, x1, y1, len;
+	double inten;
 	struct Point linea[2000];
 	hilos[0] = 0;
 	for(i=0; i<nHilos; i++){
@@ -78,8 +79,8 @@ int main(int argc, char *argv[]){
 			x1 = agujas[j].x, y1 = agujas[j].y;
 			len = max(abs(x0-x1),abs(y0-y1));
 			bresenham(x0, y0, x1, y1, linea, len);
-
-			exit(0);
+			inten = intensidad(linea, len, data);
+			printf("%f", inten); exit(0);
 		}
 	}
 
