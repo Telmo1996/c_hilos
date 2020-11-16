@@ -8,4 +8,5 @@ else
 	echo "Comenzando calculo de hilos:"
 	./c/c_hilos
 	echo "Done."
+	rm out.json
 fi
