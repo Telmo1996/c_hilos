@@ -40,7 +40,10 @@ int main(int argc, char *argv[]){
 	height = json_object_get_int(jheight);
 
 	//Guardar data
-	int data[height][width];
+	int *data[width];
+	for(i=0; i<width; i++){
+		data[i] = (int *)malloc(height * sizeof(int));
+	}
 
 	for(j=0; j<height; j++){
 		jdata_row = json_object_array_get_idx(jdata, j);
@@ -66,7 +69,7 @@ int main(int argc, char *argv[]){
 
 
 	//Bucle principal
-	int currAguja = 50;
+	int currAguja = 0, nextAguja;
 	int hilos[nHilos+1];
 	int maxIntensidad, x0, y0, x1, y1, len;
 	double inten;
@@ -75,15 +78,30 @@ int main(int argc, char *argv[]){
 	for(i=0; i<nHilos; i++){
 		maxIntensidad = 0;
 		for(j=0; j<n; j++){
-			x0 = agujas[currAguja].x, y0 = agujas[currAguja].y;
-			x1 = agujas[j].x, y1 = agujas[j].y;
+			x0 = agujas[currAguja].x; y0 = agujas[currAguja].y;
+			x1 = agujas[j].x; y1 = agujas[j].y;
 			len = max(abs(x0-x1),abs(y0-y1));
 			bresenham(x0, y0, x1, y1, linea, len);
 			inten = intensidad(linea, len, data);
-			printf("%f", inten); exit(0);
+			//printf("%f", inten); exit(0);
+			if(inten > maxIntensidad){
+				maxIntensidad = inten;
+				nextAguja = j;
+			}
 		}
+		x0 = agujas[currAguja].x; y0 = agujas[currAguja].y;
+		x1 = agujas[nextAguja].x; y1 = agujas[nextAguja].y;
+		bresenham(x0, y0, x1, y1, linea, len);
+		blanquear(linea, len, data);
+		/*Aqui iria la tonteria del break*/
+		currAguja = nextAguja;
+		hilos[i+1] = currAguja;
 	}
 
+	
+	for(i=0; i<nHilos; i++){
+		printf("%d ", hilos[i]);
+	}
 	
 
 	return 0;

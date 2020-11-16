@@ -28,14 +28,21 @@ void bresenham(int x0, int y0, int x1, int y1, struct Point linea[], int len){
 	if(len != i) printf("len != i");
 }
 
-double intensidad(struct Point linea[], int len, int data[][1000]){
+double intensidad(struct Point linea[], int len, int *data[1000]){
 	double inten = 0.0;
 	int i;
-	printf("%d\n", len);
+	//printf("%d\n", len);
 	for(i=0; i<len; i++){
-		printf("%d,%d ", linea[i].x -1, linea[i].y -1);
+		//printf("%d,%d ", linea[i].x -1, linea[i].y -1);
 		inten += 255.0 - data[linea[i].x -1][linea[i].y -1];
 	}
 	return inten / len;
 
+}
+
+void blanquear(struct Point linea[], int len, int *data[1000]){
+	int i;
+	for(i=0; i<len; i++){
+		data[linea[i].x - 1][linea[i].y - 1];
+	}
 }
