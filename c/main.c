@@ -2,9 +2,10 @@
 #include <stdlib.h>
 #include <json-c/json.h>
 
+
 int main(int argc, char *argv[]){
 	FILE *fp;
-	char buffer[1024];
+	char buffer[1024*1024*4];
 
 	struct json_object *parsed_json;
 	struct json_object *jinfo;
@@ -19,7 +20,7 @@ int main(int argc, char *argv[]){
 	}*/
 
 	fp = fopen("out.json", "r");
-	fread(buffer, 1024, 1, fp);
+	fread(buffer, 1024*1024*4, 1, fp);
 	fclose(fp);
 
 	parsed_json = json_tokener_parse(buffer);

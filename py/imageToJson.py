@@ -19,20 +19,14 @@ if __name__ == '__main__':
 		exit()
 	
 	imageName = sys.argv[1]
-	print(imageName)
 
 	image = Image.open(imageName)
 	width, height = image.size
 	img = asarray(image)
 	data = img.copy()
 
-	#for i in range(0, height):
-	#	for j in range(0, width):
-	#		print(data[i][j])
-
 	miJson = {"info": {"width": width, "height": height},
 			"data": data}
-	encodedMiJson = json.dumps(miJson, cls=NumpyArrayEncoder)
 	with open("out.json", 'w') as outfile:
-		json.dump(encodedMiJson, outfile)
+		json.dump(miJson, outfile, cls=NumpyArrayEncoder)
 
