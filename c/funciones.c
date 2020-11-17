@@ -25,7 +25,7 @@ void bresenham(int x0, int y0, int x1, int y1, struct Point linea[], int len){
 
 		i++;
 	}
-	if(len != i) printf("len != i");
+	//if(len != i) printf("%d != %d \n", len, i);
 }
 
 double intensidad(struct Point linea[], int len, int *data[1000]){
@@ -43,6 +43,6 @@ double intensidad(struct Point linea[], int len, int *data[1000]){
 void blanquear(struct Point linea[], int len, int *data[1000]){
 	int i;
 	for(i=0; i<len; i++){
-		data[linea[i].x - 1][linea[i].y - 1];
+		data[linea[i].x - 1][linea[i].y - 1] = 255;
 	}
 }

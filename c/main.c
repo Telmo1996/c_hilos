@@ -81,6 +81,7 @@ int main(int argc, char *argv[]){
 			x0 = agujas[currAguja].x; y0 = agujas[currAguja].y;
 			x1 = agujas[j].x; y1 = agujas[j].y;
 			len = max(abs(x0-x1),abs(y0-y1));
+			//printf("len: %d, ", len);
 			bresenham(x0, y0, x1, y1, linea, len);
 			inten = intensidad(linea, len, data);
 			//printf("%f", inten); exit(0);
